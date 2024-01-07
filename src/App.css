@@ -1,3 +1,22 @@
 #root {
   text-align: center;
 }
+
+.microwave {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* for debug purposes */
+.microwave > div {
+  border: 2px solid white;
+}
+
+.door {
+  flex: 3;
+}
+
+.control-panel {
+  flex: 1;
+}
