@@ -24,9 +24,11 @@ const Microwave = () => {
 
     // fully functioning microwave
     return (
-        <div className="microwave">
-            <Door isOpen={isDoorOpen} onOffToggle={handleDoorOpen}></Door>
-            <ControlPanel timerValue={timerValue} onTimerChange={handleTimerChange} selectedMode={selectedMode} onModeChange={handleModeChange}></ControlPanel>
+        <div className="microwave-frame">
+            <div className="microwave">
+                <Door isOpen={isDoorOpen} onOffToggle={handleDoorOpen}></Door>
+                <ControlPanel timerValue={timerValue} onTimerChange={handleTimerChange} selectedMode={selectedMode} onModeChange={handleModeChange}></ControlPanel>
+            </div>
         </div>
     );
 };

@@ -2,21 +2,58 @@
   text-align: center;
 }
 
+.microwave-frame {
+  border-radius: 1em;
+  padding: 5em;
+  background-color: #E4E4E4;
+}
+
 .microwave {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border-radius: 1em;
+  padding: 1em;
+  background-color: black;
 }
 
-/* for debug purposes */
 .microwave > div {
-  border: 2px solid white;
+  background-color: black;
 }
 
 .door {
-  flex: 3;
+  flex: 2;
+  position: relative;
 }
 
 .control-panel {
   flex: 1;
+}
+
+.background-elements {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.sandwich-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foreground-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
 }
