@@ -1,6 +1,7 @@
 import { useState } from "react";
-import ControlPanel from "./ControlPanel";
 import modeOptions from "./modeOptions";
+import Timer from "./Timer";
+import Mode from "./Mode";
 import Door from "./Door";
 
 const Microwave = () => {
@@ -43,6 +44,24 @@ const Microwave = () => {
         <div className="microwave-frame">
             <div className="microwave">
                 <Door isOpen={isDoorOpen} onOffToggle={handleDoorOpen}></Door>
+                <div className="control-panel">
+                    <Mode
+                        selectedMode={selectedMode}
+                        onModeChange={handleModeChange}
+                    ></Mode>
+                    <Timer
+                        minValue={timerRange.minValue}
+                        maxValue={timerRange.maxValue}
+                        timerValue={timerValue}
+                        onTimerChange={handleTimerChange}
+                    ></Timer>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+/*
                 <ControlPanel
                     timerValue={timerValue}
                     timerRange={timerRange}
@@ -50,9 +69,26 @@ const Microwave = () => {
                     onModeChange={handleModeChange}
                     onTimerChange={handleTimerChange}
                 ></ControlPanel>
-            </div>
+
+
+
+const ControlPanel = ({ timerValue, timerRange, onTimerChange, selectedMode, onModeChange }) => {
+    return (
+        // control panel for image manipulation controls
+        <div className="control-panel">
+            <Mode
+                selectedMode={selectedMode}
+                onModeChange={onModeChange}
+            ></Mode>
+            <Timer
+                minValue={timerRange.minValue}
+                maxValue={timerRange.maxValue}
+                timerValue={timerValue}
+                onTimerChange={onTimerChange}
+            ></Timer>
         </div>
     );
 };
+*/
 
 export default Microwave;
