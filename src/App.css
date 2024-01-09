@@ -25,12 +25,25 @@
   background-color: black;
 }
 
+/* 
+14-Segment font
+https://github.com/keshikan/DSEG
+*/
+@font-face {
+  font-family: 'DSEG';
+  src: url('./fonts/DSEG14Classic-BoldItalic.woff2') format('woff2'),
+       url('./fonts/DSEG14Classic-BoldItalic.woff') format('woff');
+}
+
 .display {
+  font-family: 'DSEG';
+  font-size: 1.5em;
+  padding: 0.5em 1.5em 0.5em 1.5em;
   background-color: #222222;
   color: #20C20E;
   border-radius: 0.5em;
-  padding: 0.5em;
   margin: 1em;
+  text-align: right;
 }
 
 .door {
@@ -69,6 +82,12 @@
   left: 0;
   width: 100%;
   z-index: 3;
+}
+
+@media (max-width: 768px) {
+  #root {
+    font-size: small;
+  }
 }
 
 @media (max-width: 576px) {
