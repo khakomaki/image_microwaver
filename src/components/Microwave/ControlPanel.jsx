@@ -1,14 +1,20 @@
 import Timer from "./Timer";
 import Mode from "./Mode";
 
-const ControlPanel = ({ timerValue, onTimerChange, selectedMode, onModeChange }) => {
-    const modeOptions = ['Normal', 'Defrosting', 'Grill', 'Popcorn']
-
+const ControlPanel = ({ timerValue, timerRange, onTimerChange, selectedMode, onModeChange }) => {
     return (
         // control panel for image manipulation controls
         <div className="control-panel">
-            <Mode modes={modeOptions} selectedMode={selectedMode} onModeChange={onModeChange}></Mode>
-            <Timer minValue={0} maxValue={100} timerValue={timerValue} onTimerChange={onTimerChange}></Timer>
+            <Mode
+                selectedMode={selectedMode}
+                onModeChange={onModeChange}
+            ></Mode>
+            <Timer
+                minValue={timerRange.minValue}
+                maxValue={timerRange.maxValue}
+                timerValue={timerValue}
+                onTimerChange={onTimerChange}
+            ></Timer>
         </div>
     );
 };
