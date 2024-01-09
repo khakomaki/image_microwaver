@@ -38,12 +38,25 @@ https://github.com/keshikan/DSEG
 .display {
   font-family: 'DSEG';
   font-size: 1.5em;
-  padding: 0.5em 1.5em 0.5em 1.5em;
   background-color: #222222;
   color: #20C20E;
   border-radius: 0.5em;
   margin: 1em;
   text-align: right;
+}
+
+.display > p {
+  padding: 0.5em 1.5em 0.5em 1.5em;
+  animation: blinker 3s linear infinite;
+}
+
+@keyframes blinker {
+  25%, 75% {
+    opacity: 1;
+  }
+  100%, 0% { 
+    opacity: 0; 
+  }
 }
 
 .door {

@@ -29,7 +29,7 @@ const Microwave = () => {
     }
 
     const rangeAverageInt = (range) => {
-        return Math.floor((range.minValue + range.maxValue / 2));
+        return Math.floor((range.minValue + range.maxValue) / 2);
     }
     
     const [timerValue, setTimerValue] = useState(() => {

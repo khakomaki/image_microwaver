@@ -1,7 +1,7 @@
 const Display = ({ text }) => {
     return (
         <div className="display">
-            {text}
+            <p>{text}</p>
         </div>
     );
 };
