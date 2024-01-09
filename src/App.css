@@ -21,6 +21,14 @@
   background-color: black;
 }
 
+.display {
+  background-color: #222222;
+  color: #20C20E;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin: 1em;
+}
+
 .door {
   flex: 2;
   position: relative;

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import modeOptions from "./modeOptions";
+import Display from "./Display";
 import Timer from "./Timer";
 import Mode from "./Mode";
 import Door from "./Door";
 
 const Microwave = () => {
-    const [timerValue, setTimerValue] = useState(0);
     const [selectedMode, setMode] = useState('Normal');
     const [isDoorOpen, setDoorOpen] = useState(false);
 
@@ -19,11 +19,30 @@ const Microwave = () => {
         };
     }
 
-    const [timerRange, setTimerRange] = useState(getModeRange('Normal'));
+    // converts value to time string
+    const convertToTime = (value) => {
+        // using absolute values and adding minus sign for negative value
+        const sign = value < 0 ? '-' : '';
+        const minutes = Math.floor(Math.abs(value / 60));
+        const seconds = Math.abs(value) % 60;
+        return String(sign) + String(minutes) + ':' + (seconds < 10 ? '0' : '') + String(seconds);
+    }
+
+    const rangeAverageInt = (range) => {
+        return Math.floor((range.minValue + range.maxValue / 2));
+    }
+    
+    const [timerValue, setTimerValue] = useState(() => {
+        const range = getModeRange(selectedMode);
+        return rangeAverageInt(range);
+    });
+    const [timerRange, setTimerRange] = useState(getModeRange(selectedMode));
+    const [displayText, setText] = useState(convertToTime(timerValue));
 
     // sets new timer value state
     const handleTimerChange = (value) => {
         setTimerValue(value);
+        updateMicrowaveDisplay(convertToTime(value));
     }
 
     // toggles door open/close state
@@ -36,8 +55,14 @@ const Microwave = () => {
         setMode(mode);
         const range = getModeRange(mode);
         setTimerRange(range);
-        setTimerValue(Math.floor((range.minValue + range.maxValue) / 2));
+        setTimerValue(rangeAverageInt(range));
+        updateMicrowaveDisplay(mode);
     }
+
+    // sets text to microwave display
+    const updateMicrowaveDisplay = (text) => {
+        setText(text);
+    };
 
     // fully functioning microwave
     return (
@@ -45,6 +70,9 @@ const Microwave = () => {
             <div className="microwave">
                 <Door isOpen={isDoorOpen} onOffToggle={handleDoorOpen}></Door>
                 <div className="control-panel">
+                    <Display
+                        text={displayText}
+                    ></Display>
                     <Mode
                         selectedMode={selectedMode}
                         onModeChange={handleModeChange}
