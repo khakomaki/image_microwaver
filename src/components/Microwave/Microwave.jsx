@@ -61,34 +61,4 @@ const Microwave = () => {
     );
 };
 
-/*
-                <ControlPanel
-                    timerValue={timerValue}
-                    timerRange={timerRange}
-                    selectedMode={selectedMode}
-                    onModeChange={handleModeChange}
-                    onTimerChange={handleTimerChange}
-                ></ControlPanel>
-
-
-
-const ControlPanel = ({ timerValue, timerRange, onTimerChange, selectedMode, onModeChange }) => {
-    return (
-        // control panel for image manipulation controls
-        <div className="control-panel">
-            <Mode
-                selectedMode={selectedMode}
-                onModeChange={onModeChange}
-            ></Mode>
-            <Timer
-                minValue={timerRange.minValue}
-                maxValue={timerRange.maxValue}
-                timerValue={timerValue}
-                onTimerChange={onTimerChange}
-            ></Timer>
-        </div>
-    );
-};
-*/
-
 export default Microwave;
