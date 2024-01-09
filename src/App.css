@@ -1,10 +1,14 @@
 #root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
 .microwave-frame {
+  max-width: 1000px;
   border-radius: 1em;
-  padding: 5em;
+  padding: 1em;
   background-color: #E4E4E4;
 }
 
@@ -32,6 +36,7 @@
 .door {
   flex: 2;
   position: relative;
+  cursor: pointer;
 }
 
 .control-panel {
@@ -64,4 +69,10 @@
   left: 0;
   width: 100%;
   z-index: 3;
+}
+
+@media (max-width: 576px) {
+  .microwave {
+    flex-direction: column;
+  }
 }

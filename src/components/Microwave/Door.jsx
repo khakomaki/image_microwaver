@@ -5,7 +5,7 @@ const Door = ({ isOpen, onOffToggle }) => {
     // door with on/off toggle, shows door when closed
     return (
         <>
-            <div className="door">
+            <div className="door" onClick={onOffToggle}>
                 <img src={doorOpenImage} className="background-elements" id="open-door"/>
                 <div className="sandwich-elements">
                     <p>(Image insertion here)</p>
@@ -14,7 +14,6 @@ const Door = ({ isOpen, onOffToggle }) => {
                     <img src={doorClosedImage} className="foreground-elements" id="closed-door"/>
                 )}
             </div>
-            <button onClick={onOffToggle}>{isOpen ? "Close door" : "Open door"}</button>
         </>
     )
 }
