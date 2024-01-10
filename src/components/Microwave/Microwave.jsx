@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import modeOptions from "./modeOptions";
 import Display from "./Display";
 import Timer from "./Timer";
 import Mode from "./Mode";
 import Door from "./Door";
+import ImageUpload from "./ImageUpload";
 
 const Microwave = () => {
     const [selectedMode, setMode] = useState('Normal');
     const [isDoorOpen, setDoorOpen] = useState(false);
+    const [uploadedImage, setUploadedImage] = useState(null);
 
     // gets value range of the mode
     const getModeRange = (mode) => {
@@ -28,10 +30,12 @@ const Microwave = () => {
         return String(sign) + String(minutes) + ':' + (seconds < 10 ? '0' : '') + String(seconds);
     }
 
+    // calculates average integer of given range
     const rangeAverageInt = (range) => {
         return Math.floor((range.minValue + range.maxValue) / 2);
     }
     
+    // initializes timer & display states
     const [timerValue, setTimerValue] = useState(() => {
         const range = getModeRange(selectedMode);
         return rangeAverageInt(range);
@@ -64,11 +68,27 @@ const Microwave = () => {
         setText(text);
     };
 
+    // sends image to be processed
+    // TODO
+    const handleProcessImage = () => {
+        if (uploadedImage) {
+            console.log("Sending image: ", uploadedImage);
+        } else {
+            console.log("No image");
+        }
+    };
+
     // fully functioning microwave
     return (
         <div className="microwave-frame">
             <div className="microwave">
-                <Door isOpen={isDoorOpen} onOffToggle={handleDoorOpen}></Door>
+                <Door 
+                    isOpen={isDoorOpen} 
+                    onOffToggle={handleDoorOpen}
+                    insideElements={
+                        <ImageUpload onImageUpload={setUploadedImage}></ImageUpload>
+                    }
+                ></Door>
                 <div className="control-panel">
                     <Display
                         text={displayText}
@@ -83,6 +103,7 @@ const Microwave = () => {
                         timerValue={timerValue}
                         onTimerChange={handleTimerChange}
                     ></Timer>
+                    <button className="start-button" onClick={handleProcessImage}>Start</button>
                 </div>
             </div>
         </div>
