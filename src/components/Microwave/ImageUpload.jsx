@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const ImageUpload = ({ onImageUpload }) => {
+const ImageUpload = ({ onImageUpload, processedImage }) => {
     const [image, setImage] = useState(null);
-    
+
+    // update state when processed image changes
+    useEffect(() => {
+        setImage(processedImage);
+    }, [processedImage]);
+
     // changes currently selected image
     const handleChangeImage = (event) => {
         const selectedImage = event.target.files[0];

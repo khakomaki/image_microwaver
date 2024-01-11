@@ -69,14 +69,45 @@ const Microwave = () => {
     };
 
     // sends image to be processed
-    // TODO
-    const handleProcessImage = () => {
-        if (uploadedImage) {
-            console.log("Sending image: ", uploadedImage);
-        } else {
-            console.log("No image");
-        }
-    };
+	const handleProcessImage = async () => {
+		if (uploadedImage) {
+			try {
+				// send image and parameters
+				const formData = new FormData();
+				formData.append('image', uploadedImage);
+				formData.append('mode', selectedMode);
+				formData.append('intensity', timerValue);
+
+				// request processed image from API
+				const response = await fetch('http://localhost:3001/process-image', {
+					method: 'POST',
+					body: formData
+				});
+
+				if (response.ok) {
+					const processedImageBlob = await response.blob();
+                    const timestamp = Date.now();
+                    const processedImageFile = new File([processedImageBlob], `freshly_microwaved_${timestamp}.jpg`, {
+                        type: 'image/jpeg',
+                        lastModified: timestamp
+                    });
+
+                    setUploadedImage(processedImageFile);
+                    console.log(processedImageFile);
+				} else {
+					// server errors
+					console.error('Server error:', response.status, response.statusText);
+				}
+			} catch (error) {
+				// client errors
+				console.error('Client error:', error.message);
+			}
+		} else {
+            // TODO: notify user
+			console.log("No image");
+		}
+	};
+
 
     // fully functioning microwave
     return (
@@ -86,7 +117,7 @@ const Microwave = () => {
                     isOpen={isDoorOpen} 
                     onOffToggle={handleDoorOpen}
                     insideElements={
-                        <ImageUpload onImageUpload={setUploadedImage}></ImageUpload>
+                        <ImageUpload onImageUpload={setUploadedImage} processedImage={uploadedImage} />
                     }
                 ></Door>
                 <div className="control-panel">
