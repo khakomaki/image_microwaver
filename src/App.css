@@ -105,13 +105,24 @@ https://github.com/keshikan/DSEG
 .image-upload {
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.25);
 }
 
 #user-image {
   max-width: 100%;
   max-height: 300px;
   object-fit: contain;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#image-upload-input, #image-download-button {
+  display: inline-block;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: #222222;
+  cursor: pointer;
 }
 
 /* plate spinning */

@@ -15,6 +15,20 @@ const ImageUpload = ({ onImageUpload, processedImage }) => {
         onImageUpload(selectedImage);
     }
 
+    const handleDownloadImage = () => {
+        if (image) {
+            // download link
+            const dlLink = document.createElement('a');
+            dlLink.href = URL.createObjectURL(image);
+            dlLink.download = image.name;
+
+            // trigger immediately
+            document.body.appendChild(dlLink);
+            dlLink.click();
+            document.body.removeChild(dlLink);
+        }
+    };
+
     return (
         <div className="image-upload" onClick={(e) => e.stopPropagation()}>
             {image && (
@@ -24,7 +38,8 @@ const ImageUpload = ({ onImageUpload, processedImage }) => {
                     id="user-image"
                 />
             )}
-            <input type='file' onChange={handleChangeImage} accept="image/*"/>
+            <input type='file' onChange={handleChangeImage} accept="image/*" id="image-upload-input"/>
+            <button onClick={handleDownloadImage} id="image-download-button">Download image</button>
         </div>
     );
 };
