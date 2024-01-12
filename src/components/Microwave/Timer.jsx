@@ -14,7 +14,7 @@ const Timer = ({ minValue, maxValue, timerValue, onTimerChange, disabled }) => {
                 min={minValue}
                 max={maxValue}
                 value={timerValue}
-                onChange={(e) => handleTimerChange}
+                onChange={handleTimerChange}
                 disabled={disabled}
             />
             </label>

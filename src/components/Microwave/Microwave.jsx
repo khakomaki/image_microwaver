@@ -1,16 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import modeOptions from "./modeOptions";
 import Display from "./Display";
 import Timer from "./Timer";
 import Mode from "./Mode";
 import Door from "./Door";
 import ImageUpload from "./ImageUpload";
+import { dingSFX, microwaveHummingSFX } from '../../sounds';
 
 const Microwave = () => {
     const [selectedMode, setMode] = useState('Normal');
     const [isDoorOpen, setDoorOpen] = useState(false);
     const [uploadedImage, setUploadedImage] = useState(null);
     const [microwaving, setMicrowaving] = useState(false);
+
+    // plays microwave humming sound when microwave is on
+    useEffect(() => {
+        if (microwaving) {
+            microwaveHummingSFX.play();
+        } else {
+            microwaveHummingSFX.pause();
+            microwaveHummingSFX.currentTime = 0;
+        }
+    }, [microwaving]);
 
     // gets value range of the mode
     const getModeRange = (mode) => {
@@ -117,6 +128,7 @@ const Microwave = () => {
                 updateMicrowaveDisplay('Error');
 			} finally {
                 console.log('microwaved');
+                dingSFX.play();
                 setMicrowaving(false);
             }
 		} else {
