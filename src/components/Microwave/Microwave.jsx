@@ -5,7 +5,7 @@ import Timer from "./Timer";
 import Mode from "./Mode";
 import Door from "./Door";
 import ImageUpload from "./ImageUpload";
-import { dingSFX, microwaveHummingSFX } from '../../sounds';
+import { buttonPushSFX, doorCloseSFX, doorOpenSFX, dingSFX, microwaveHummingSFX, plateInsertSFX } from '../../sounds';
 
 const Microwave = () => {
     const [selectedMode, setMode] = useState('Normal');
@@ -63,11 +63,17 @@ const Microwave = () => {
 
     // toggles door open/close state
     const handleDoorOpen = () => {
-        setDoorOpen((lastDoorState) => !lastDoorState);
+        setDoorOpen(!isDoorOpen);
+        if (isDoorOpen) {
+            doorCloseSFX.play();
+        } else {
+            doorOpenSFX.play();
+        }
     }
 
     // sets new mode state, updates timer range and value
     const handleModeChange = (mode) => {
+        buttonPushSFX.play();
         setMode(mode);
         const range = getModeRange(mode);
         setTimerRange(range);
@@ -89,6 +95,8 @@ const Microwave = () => {
 
         // sends request if image is uploaded
 		if (uploadedImage) {
+            let waitTime = 1000;
+
 			try {
                 setMicrowaving(true);
                 updateMicrowaveDisplay('Heating. . .');
@@ -99,11 +107,17 @@ const Microwave = () => {
 				formData.append('mode', selectedMode);
 				formData.append('intensity', timerValue);
 
+                // for calculating processing time
+                const processingStartTime = Date.now();
+
 				// request processed image from API
 				const response = await fetch('http://localhost:3001/process-image', {
 					method: 'POST',
 					body: formData
 				});
+
+                // processing time
+                const processingTime = Date.now() - processingStartTime;
 
                 // handles API response
 				if (response.ok) {
@@ -114,9 +128,19 @@ const Microwave = () => {
                         lastModified: timestamp
                     });
 
-                    setUploadedImage(processedImageFile);
-                    updateMicrowaveDisplay('Ready');
-                    console.log(processedImageFile);
+                    // wait time
+                    waitTime = Math.max(0, waitTime - processingTime);
+                    setTimeout(() => {
+                        // updates image and variables
+                        setUploadedImage(processedImageFile);
+                        updateMicrowaveDisplay('Ready');
+                        setMicrowaving(false);
+
+                        // sfx & log
+                        dingSFX.play();
+                        console.log(processedImageFile);
+                    }, waitTime);
+
 				} else {
 					// server errors
 					console.error('Server error:', response.status, response.statusText);
@@ -126,13 +150,10 @@ const Microwave = () => {
 				// client errors
 				console.error('Client error:', error.message);
                 updateMicrowaveDisplay('Error');
-			} finally {
-                console.log('microwaved');
-                dingSFX.play();
                 setMicrowaving(false);
-            }
+			}
 		} else {
-			console.log("No image");
+			console.error("No image");
             updateMicrowaveDisplay('No image');
 		}
 	};
