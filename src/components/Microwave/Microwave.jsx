@@ -109,7 +109,7 @@ const Microwave = () => {
 
         // sends request if image is uploaded
 		if (uploadedImage) {
-            let waitTime = 1000;
+            let waitTime = 3500;
 
 			try {
                 setMicrowaving(true);

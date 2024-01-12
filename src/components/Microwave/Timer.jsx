@@ -18,7 +18,6 @@ const Timer = ({ minValue, maxValue, timerValue, onTimerChange, disabled }) => {
                 disabled={disabled}
             />
             </label>
-            {timerValue}
         </div>
     );
 };
