@@ -1,4 +1,10 @@
-const Timer = ({ minValue, maxValue, timerValue, onTimerChange }) => {
+const Timer = ({ minValue, maxValue, timerValue, onTimerChange, disabled }) => {
+
+    const handleTimerChange = (e) => {
+        if (disabled) return;
+        onTimerChange(parseInt(e.target.value, 10));
+    };
+
     return (
         <div className="timer">
             <label>
@@ -8,7 +14,8 @@ const Timer = ({ minValue, maxValue, timerValue, onTimerChange }) => {
                 min={minValue}
                 max={maxValue}
                 value={timerValue}
-                onChange={(e) => onTimerChange(parseInt(e.target.value, 10))}
+                onChange={(e) => handleTimerChange}
+                disabled={disabled}
             />
             </label>
             {timerValue}

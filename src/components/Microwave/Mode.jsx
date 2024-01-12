@@ -1,11 +1,22 @@
 import modeOptions from "./modeOptions";
 
-const Mode = ({ selectedMode, onModeChange }) => {
+const Mode = ({ selectedMode, onModeChange, disabled }) => {
+    
+    const handleModeChange = (e) => {
+        if (disabled) return;
+        onModeChange(e.target.value);
+    };
+
     return (
         <div className="mode">
             <label>
                 <p>Mode</p>
-                <select name="mode" value={selectedMode} onChange={(e) => onModeChange(e.target.value)}>
+                <select
+                    name="mode" 
+                    value={selectedMode} 
+                    onChange={handleModeChange}
+                    disabled={disabled}
+                >
                     {modeOptions.map((mode) => (
                         <option key={mode.name} value={mode.name}>
                             {mode.name}
