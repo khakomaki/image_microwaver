@@ -89,6 +89,11 @@ https://github.com/keshikan/DSEG
   align-items: center;
 }
 
+/* Microwave light on */
+.microwaving .background-elements, .microwaving .sandwich-elements {
+  filter: sepia(50%) saturate(250%);
+}
+
 .foreground-elements {
   position: absolute;
   top: 0;
@@ -107,6 +112,20 @@ https://github.com/keshikan/DSEG
   max-width: 100%;
   max-height: 300px;
   object-fit: contain;
+}
+
+/* plate spinning */
+.microwaving #user-image {
+  animation: spinning 10s linear infinite;
+}
+
+@keyframes spinning {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
 
 @media (max-width: 1000px) {

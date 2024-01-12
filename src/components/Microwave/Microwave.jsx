@@ -166,7 +166,7 @@ const Microwave = () => {
 
     // fully functioning microwave
     return (
-        <div className="microwave-frame">
+        <div className={`microwave-frame ${microwaving ? 'microwaving' : ''}`}>
             <div className="microwave">
                 <Door 
                     isOpen={isDoorOpen} 
