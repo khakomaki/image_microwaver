@@ -97,14 +97,16 @@ const Microwave = () => {
 				} else {
 					// server errors
 					console.error('Server error:', response.status, response.statusText);
+                    updateMicrowaveDisplay('Error');
 				}
 			} catch (error) {
 				// client errors
 				console.error('Client error:', error.message);
+                updateMicrowaveDisplay('Error');
 			}
 		} else {
-            // TODO: notify user
 			console.log("No image");
+            updateMicrowaveDisplay('No image');
 		}
 	};
 
