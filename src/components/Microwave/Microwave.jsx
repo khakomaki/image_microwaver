@@ -81,6 +81,12 @@ const Microwave = () => {
         updateMicrowaveDisplay(mode);
     }
 
+    // sets new image, plays sound effect
+    const HandleImageChange = (image) => {
+        setUploadedImage(image);
+        plateInsertSFX.play();
+    }
+
     // sets text to microwave display
     const updateMicrowaveDisplay = (text) => {
         setText(text);
@@ -167,7 +173,7 @@ const Microwave = () => {
                     onOffToggle={handleDoorOpen}
                     insideElements={
                         <ImageUpload
-                            onImageUpload={setUploadedImage}
+                            onImageUpload={HandleImageChange}
                             processedImage={uploadedImage}
                         />
                     }
