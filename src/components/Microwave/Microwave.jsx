@@ -137,7 +137,7 @@ const Microwave = () => {
 				if (response.ok) {
 					const processedImageBlob = await response.blob();
                     const timestamp = Date.now();
-                    const processedImageFile = new File([processedImageBlob], `${changeFileExtension(uploadedImage.name, '_microwaved.jpg')}`, {
+                    const processedImageFile = new File([processedImageBlob], `${changeFileExtension(uploadedImage.name, '.jpg')}`, {
                         type: 'image/jpeg',
                         lastModified: timestamp
                     });
