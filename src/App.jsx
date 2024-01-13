@@ -5,8 +5,26 @@ function App() {
 
 return (
     <>
-      <h1>Image Microwaver</h1>
-      <Microwave></Microwave>
+      <div className='header'>
+        <h1>Image Microwaver</h1>
+      </div>
+      <div className='main'>
+        <div id='left-panel'>
+
+        </div>
+        <div className='main-content'>
+          <Microwave></Microwave>
+          <div className='info-boxes'>
+
+          </div>
+        </div>
+        <div id='right-panel'>
+
+        </div>
+      </div>
+      <div className='footer'>
+        
+      </div>
     </>
   )
 }

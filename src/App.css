@@ -5,6 +5,23 @@
   text-align: center;
 }
 
+.main {
+  width: 100%;
+  display: flex;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#left-panel, #right-panel {
+  flex: 2;
+  text-align: center;
+}
+
 .microwave-frame {
   max-width: 1000px;
   border-radius: 1em;
@@ -85,8 +102,8 @@ https://github.com/keshikan/DSEG
   height: 100%;
   z-index: 2;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 /* Microwave light on */
@@ -120,10 +137,12 @@ input[type="file"] {
 #image-upload-input, #image-download-button {
   display: inline-block;
   padding: 0.5em;
-  border-radius: 0.5em;
+  margin-top: 0.25em;
+  border-radius: 0.25em;
   background-color: #222222;
   color: #E4E4E4;
   cursor: pointer;
+  font-size: 0.75em;
 }
 
 /* plate spinning */
@@ -140,19 +159,31 @@ input[type="file"] {
   }
 }
 
+@media (max-width: 1200px) {
+  /* rearranges side panels */
+  .main {
+    flex-direction: column;
+  }
+
+  #left-panel {
+    display: none;
+  }
+}
+
 @media (max-width: 1000px) {
   #user-image {
-    max-height: 25vw;
+    max-height: 20vw;
   }
 }
 
 @media (max-width: 768px) {
   #root {
-    font-size: small;
+    font-size: 0.75em;
   }
 }
 
 @media (max-width: 576px) {
+  /* separates Microwave door and control panel */
   .microwave {
     flex-direction: column;
   }
