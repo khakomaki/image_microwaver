@@ -29,6 +29,46 @@
   background-color: #E4E4E4;
 }
 
+.info-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1em;
+}
+
+.info-box {
+  flex: 1;
+  flex-basis: 600px;
+  box-sizing: border-box;
+  padding: 1em;
+  border: #E4E4E4 dashed 2px;
+  border-radius: 1em;
+  margin: 1em;
+}
+
+.info-box-title {
+  text-align: left;
+  margin: 1em 0em 0em 1em;
+  text-decoration: underline;
+}
+
+.info-box-images {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1em;
+}
+
+.info-box-image-text {
+  white-space: nowrap;
+}
+
+.info-box-image {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
 .microwave {
   display: flex;
   flex-wrap: wrap;
@@ -160,13 +200,17 @@ input[type="file"] {
 }
 
 @media (max-width: 1200px) {
-  /* rearranges side panels */
+  /* rearranges side panels & info boxes */
   .main {
     flex-direction: column;
   }
 
   #left-panel {
     display: none;
+  }
+
+  .info-box {
+    min-width: auto;
   }
 }
 
@@ -186,5 +230,9 @@ input[type="file"] {
   /* separates Microwave door and control panel */
   .microwave {
     flex-direction: column;
+  }
+
+  #root {
+    font-size: 0.6em;
   }
 }
