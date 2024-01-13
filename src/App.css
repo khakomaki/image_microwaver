@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 1em;
 }
 
 .main {
@@ -11,19 +12,19 @@
 }
 
 .main-content {
-  flex-grow: 1;
+  flex: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1em;
 }
 
 #left-panel, #right-panel {
-  flex: 2;
+  flex: 1;
   text-align: center;
 }
 
 .microwave-frame {
-  max-width: 1000px;
   border-radius: 1em;
   padding: 1em;
   background-color: #E4E4E4;
@@ -38,7 +39,7 @@
 
 .info-box {
   flex: 1;
-  flex-basis: 600px;
+  flex-basis: 400px;
   box-sizing: border-box;
   padding: 1em;
   border: #E4E4E4 dashed 2px;
@@ -98,7 +99,6 @@ https://github.com/keshikan/DSEG
   background-color: #222222;
   color: #20C20E;
   border-radius: 0.5em;
-  margin: 1em;
   text-align: right;
 }
 
@@ -114,6 +114,12 @@ https://github.com/keshikan/DSEG
   100%, 0% { 
     opacity: 0; 
   }
+}
+
+.start-button {
+  margin-top: 1em;
+  height: 4em;
+  width: 100%;
 }
 
 .door {
