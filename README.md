@@ -6,11 +6,11 @@ Web application for image manipulation.
 
 ## Usage
 
-1. Upload image (max. 2MB)
-2. Close [door](#door)
-3. Select [mode](#mode)
-4. Select [time](#time)
-5. Press [start](#start)
+1. Upload image
+2. Close [Door](#door)
+3. Select [Mode](#mode)
+4. Select [Time](#time)
+5. Press [Start](#start)
 
 After the image has been processed, it can be downloaded by opening the door and hitting the download button.
 
@@ -20,25 +20,33 @@ After the image has been processed, it can be downloaded by opening the door and
 
 Mode defines how the image will be processed.
 
-Mode can be selected using Mode-knob. Rotating the knob shows the current selection on the screen.
-
-![](public/mode_knob_example.png)
+Mode can be selected using Mode-selector. Selected mode is updated on the display.
 
 ### Normal
 
-Increases image contrast.
+Scales image horizontally. Positive values make the image wider, negative values thinner.
+
+![](src/images/example_landscape_image_normal_negative.jpg)
+![](src/images/example_landscape_image_normal_positive.jpg)
 
 ### Defrosting
 
-Increases image saturation.
+Controls image saturation. Positive values increase saturation, negative values decrease.
+
+![](src/images/example_landscape_image_defrosting_negative.jpg)
+![](src/images/example_landscape_image_defrosting_positive.jpg)
 
 ### Grill
 
-Reduces jpeg quality.
+Reduces jpg quality. Great for reducing file size. Be careful not to grill too much.
+
+![](src/images/example_landscape_image_grill.jpg)
 
 ### Popcorn
 
-Adds noice to image.
+Reduces resolution. Great for reducing file size.
+
+![](src/images/example_landscape_image_popcorn.jpg)
 
 ## Timer (Intensity)
 
@@ -46,9 +54,7 @@ Adds noice to image.
 
 Timer defines how much strongly the selected mode is applied to the image.
 
-Time can be selected by Timer-knob. Rotating the knob shows the current selection on the screen.
-
-![](public/timer_knob_example.png)
+Time can be selected by Timer-selector. Selected time is updated on the display.
 
 ## Start
 
@@ -56,11 +62,15 @@ Time can be selected by Timer-knob. Rotating the knob shows the current selectio
 
 Processes the image with currently selected mode and intensity.
 
-## Screen
+Locks all controls until image has been processed.
 
-Screen shows currently selected mode / time, according to which one has been modified last time.
+## Display
 
-Displays "done!" after image has been successfully processed or "error" if something went wrong.
+Display shows currently selected mode / time, according to which one has been modified last time.
+
+- Displays "Done!" after image has been successfully processed
+- Displays "Error" if something went wrong
+- Displays "Close door" if door is left open when Start is pressed
 
 ![](public/screen_mode_example.png)
 ![](public/screen_timer_example.png)
@@ -78,3 +88,21 @@ When the door is open, the image can be downloaded or new image can be uploaded.
 - Can't be opened while the image is being processed
 
 ![](public/microwave_open_example.png)
+
+## How to setup
+
+- Clone repository to desired directory
+- Run following command in the root directory to install dependencies (requires npm):
+
+```bash
+npm install
+```
+
+- Run following command to start server:
+
+```bash
+npm run dev
+```
+
+- Setup API for image processing: https://github.com/khakomaki/image_microwaver_api
+- Check that both servers and communication is working by uploading and processing example image
