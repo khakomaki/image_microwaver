@@ -12,7 +12,11 @@ Web application for image manipulation.
 4. Select [Time](#time)
 5. Press [Start](#start)
 
+![](public/microwave_usage_example.gif)
+
 After the image has been processed, it can be downloaded by opening the door and hitting the download button.
+
+Same image can be microwaved again immediately after.
 
 ## Modes
 
@@ -91,8 +95,14 @@ When the door is open, the image can be downloaded or new image can be uploaded.
 
 ## How to setup
 
-- Clone repository to desired directory
-- Run following command in the root directory to install dependencies (requires npm):
+- Check that [requirements](#requirements) are satisfied
+- Run following command to clone the repository:
+
+```bash
+git clone https://github.com/khakomaki/image_microwaver .
+```
+
+- Run following command in the root directory to install dependencies:
 
 ```bash
 npm install
@@ -106,3 +116,38 @@ npm run dev
 
 - Setup API for image processing: https://github.com/khakomaki/image_microwaver_api
 - Check that both servers and communication is working by uploading and processing example image
+
+### Requirements
+
+<a name="requirements"></a>
+
+- [npm](https://www.npmjs.com/) installed
+
+## Sound effects
+
+Microwave has sound effects for:
+
+- Opening/closing door
+- Button press sound when changing mode
+- Microwave humming during image processing
+- Processing finish ding
+- Plate clatter when uploading new image
+
+All sounds are from DigitalDials' video on [Youtube](https://www.youtube.com/watch?v=F5x_IsqT3qQ).
+
+License: Creative Commons Attribution license (reuse allowed)
+
+## Fonts
+
+**Roboto**
+
+License: Apache License, Version 2.0
+
+**DSEG (DSEG14 Series)**
+
+Special thanks to the creators of the DSEG font.
+DSEG フォントのクリエーターに特別な感謝を申し上げます。
+
+Check the font on [Github](https://github.com/keshikan/DSEG)!
+
+License: [SIL OPEN FONT LICENSE Version 1.1](DSEG-LICENSE.txt)
