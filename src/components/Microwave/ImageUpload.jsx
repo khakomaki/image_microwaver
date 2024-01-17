@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from './Image';
 
 const ImageUpload = ({ onImageUpload, processedImage }) => {
     const [image, setImage] = useState(null);
@@ -31,13 +32,7 @@ const ImageUpload = ({ onImageUpload, processedImage }) => {
 
     return (
         <div className="image-upload" onClick={(e) => e.stopPropagation()}>
-            {image && (
-                <img
-                    src={URL.createObjectURL(image)}
-                    alt="Uploaded image"
-                    id="user-image"
-                />
-            )}
+            {image && <Image image={image} />}
             <input type='file' onChange={handleChangeImage} accept="image/*" id="image-upload-input"/>
             <button onClick={handleDownloadImage} id="image-download-button">Download image</button>
         </div>

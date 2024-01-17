@@ -82,7 +82,7 @@ const Microwave = () => {
     }
 
     // sets new image, plays sound effect
-    const HandleImageChange = (image) => {
+    const handleImageChange = (image) => {
         setUploadedImage(image);
         plateInsertSFX.play();
     }
@@ -181,28 +181,28 @@ const Microwave = () => {
                     onOffToggle={handleDoorOpen}
                     insideElements={
                         <ImageUpload
-                            onImageUpload={HandleImageChange}
+                            onImageUpload={handleImageChange}
                             processedImage={uploadedImage}
                         />
                     }
                     disabled={microwaving}
-                ></Door>
+                />
                 <div className="control-panel">
                     <Display
                         text={displayText}
-                    ></Display>
+                    />
                     <Mode
                         selectedMode={selectedMode}
                         onModeChange={handleModeChange}
                         disabled={microwaving}
-                    ></Mode>
+                    />
                     <Timer
                         minValue={timerRange.minValue}
                         maxValue={timerRange.maxValue}
                         timerValue={timerValue}
                         onTimerChange={handleTimerChange}
                         disabled={microwaving}
-                    ></Timer>
+                    />
                     <button className="start-button" onClick={handleProcessImage} disabled={microwaving}>Start</button>
                 </div>
             </div>
