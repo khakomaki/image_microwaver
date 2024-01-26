@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import modeOptions from "./modeOptions";
 
 const Mode = ({ selectedMode, onModeChange, disabled }) => {
@@ -26,6 +27,12 @@ const Mode = ({ selectedMode, onModeChange, disabled }) => {
             </label>
         </div>
     )
-}
+};
+
+Mode.propTypes = {
+    selectedMode: PropTypes.string.isRequired,
+    onModeChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired
+};
 
 export default Mode;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const InfoBox = ({ title, text, images }) => {
     return (
         <div className="info-box">
@@ -13,6 +15,12 @@ const InfoBox = ({ title, text, images }) => {
             </div>
         </div>
     );
+};
+
+InfoBox.propTypes = {
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    images: PropTypes.array.isRequired
 };
 
 export default InfoBox;

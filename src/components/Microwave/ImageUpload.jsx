@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import Image from './Image';
 
 const ImageUpload = ({ onImageUpload, processedImage }) => {
@@ -37,6 +38,11 @@ const ImageUpload = ({ onImageUpload, processedImage }) => {
             <button onClick={handleDownloadImage} id="image-download-button">Download image</button>
         </div>
     );
+};
+
+ImageUpload.propTypes = {
+    onImageUpload: PropTypes.func.isRequired,
+    processedImage: PropTypes.object
 };
 
 export default ImageUpload;

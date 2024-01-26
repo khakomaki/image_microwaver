@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Timer = ({ minValue, maxValue, timerValue, onTimerChange, disabled }) => {
 
     const handleTimerChange = (e) => {
@@ -21,5 +23,13 @@ const Timer = ({ minValue, maxValue, timerValue, onTimerChange, disabled }) => {
         </div>
     );
 };
+
+Timer.propTypes = {
+    minValue: PropTypes.number.isRequired,
+    maxValue: PropTypes.number.isRequired,
+    timerValue: PropTypes.number.isRequired,
+    onTimerChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired
+}
 
 export default Timer;
