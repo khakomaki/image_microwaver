@@ -11,6 +11,8 @@ const doorCloseSFX = new Audio(doorClose);
 const doorOpenSFX = new Audio(doorOpen);
 const dingSFX = new Audio(ding);
 const microwaveHummingSFX = new Audio(microwaveHumming);
+microwaveHummingSFX.loop=true;
+
 const plateInsertSFX = new Audio(plateInsert);
 
 export { buttonPushSFX, doorCloseSFX, doorOpenSFX, dingSFX, microwaveHummingSFX, plateInsertSFX };

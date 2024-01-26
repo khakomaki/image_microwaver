@@ -7,6 +7,8 @@ import Door from "./Door";
 import ImageUpload from "./ImageUpload";
 import { buttonPushSFX, doorCloseSFX, doorOpenSFX, dingSFX, microwaveHummingSFX, plateInsertSFX } from '../../sounds';
 
+const microwavingWaitTime = 10000; // 10s
+
 const Microwave = () => {
     const [selectedMode, setMode] = useState('Normal');
     const [isDoorOpen, setDoorOpen] = useState(false);
@@ -109,7 +111,7 @@ const Microwave = () => {
 
         // sends request if image is uploaded
 		if (uploadedImage) {
-            let waitTime = 10000;
+            let waitTime = microwavingWaitTime;
 
 			try {
                 setMicrowaving(true);
