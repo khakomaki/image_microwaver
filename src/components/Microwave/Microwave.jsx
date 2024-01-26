@@ -159,8 +159,10 @@ const Microwave = () => {
 
 				} else {
 					// server errors
-					console.error('Server error:', response.status, response.statusText);
+                    const errorResponse = await response.json();
+					console.error('Server error:', response.status, errorResponse.error);
                     updateMicrowaveDisplay('Error');
+                    setMicrowaving(false);
 				}
 			} catch (error) {
 				// client errors
