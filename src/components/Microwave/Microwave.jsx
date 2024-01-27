@@ -97,11 +97,6 @@ const Microwave = () => {
         setText(text);
     };
 
-    const changeFileExtension = (filename, newFileExtension) => {
-        const oldFileExtension = filename.split('.').pop();
-        return filename.replace('.' + oldFileExtension, newFileExtension);
-    };
-
     // sends image to be processed
 	const handleProcessImage = async () => {
         if (microwaving) return;
@@ -139,8 +134,7 @@ const Microwave = () => {
 				if (response.ok) {
 					const processedImageBlob = await response.blob();
                     const timestamp = Date.now();
-                    const processedImageFile = new File([processedImageBlob], `${changeFileExtension(uploadedImage.name, '.jpg')}`, {
-                        type: 'image/jpeg',
+                    const processedImageFile = new File([processedImageBlob], uploadedImage.name, {
                         lastModified: timestamp
                     });
 
