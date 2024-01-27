@@ -7,7 +7,10 @@ import Door from "./Door";
 import ImageUpload from "./ImageUpload";
 import { buttonPushSFX, doorCloseSFX, doorOpenSFX, dingSFX, microwaveHummingSFX, plateInsertSFX } from '../../sounds';
 
-const microwavingWaitTime = 10000; // 10s
+// API endpoint from .env
+const IMAGE_PROCESSING_API = import.meta.env.VITE_IMAGE_PROCESSING_API || 'http://localhost:3001/process-image';
+
+const MICROWAVING_WAIT_TIME = 10000; // 10s
 
 const Microwave = () => {
     const [selectedMode, setMode] = useState('Normal');
@@ -96,9 +99,6 @@ const Microwave = () => {
 
     const changeFileExtension = (filename, newFileExtension) => {
         const oldFileExtension = filename.split('.').pop();
-        console.log(filename);
-        console.log(oldFileExtension);
-        console.log(newFileExtension);
         return filename.replace('.' + oldFileExtension, newFileExtension);
     };
 
@@ -111,7 +111,7 @@ const Microwave = () => {
 
         // sends request if image is uploaded
 		if (uploadedImage) {
-            let waitTime = microwavingWaitTime;
+            let waitTime = MICROWAVING_WAIT_TIME;
 
 			try {
                 setMicrowaving(true);
@@ -127,7 +127,7 @@ const Microwave = () => {
                 const processingStartTime = Date.now();
 
 				// request processed image from API
-				const response = await fetch('http://localhost:3001/process-image', {
+				const response = await fetch(IMAGE_PROCESSING_API, {
 					method: 'POST',
 					body: formData
 				});

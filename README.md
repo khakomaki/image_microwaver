@@ -114,6 +114,12 @@ npm install
 npm run dev
 ```
 
+- Create .env.local file in root directory for API endpoint:
+
+```bash
+VITE_IMAGE_PROCESSING_API=REPLACE_WITH_API_URL
+```
+
 - Setup API for image processing: https://github.com/khakomaki/image_microwaver_api
 - Check that both servers and communication is working by uploading and processing example image
 
