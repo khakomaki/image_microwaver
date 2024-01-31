@@ -2,6 +2,8 @@
 
 Web application for image manipulation.
 
+Check out live demo of the final website with frontend and API configured at [www.imagemicrowaver.com](https://www.imagemicrowaver.com)
+
 ![](public/microwave_closed_example.png)
 
 ## Usage
