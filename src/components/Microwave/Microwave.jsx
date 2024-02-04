@@ -106,8 +106,6 @@ const Microwave = () => {
 
         // sends request if image is uploaded
 		if (uploadedImage) {
-            let waitTime = MICROWAVING_WAIT_TIME;
-
 			try {
                 setMicrowaving(true);
                 updateMicrowaveDisplay('Heating. . .');
@@ -139,7 +137,7 @@ const Microwave = () => {
                     });
 
                     // wait time
-                    waitTime = Math.max(0, waitTime - processingTime);
+                    const waitTime = Math.max(0, MICROWAVING_WAIT_TIME - processingTime);
                     setTimeout(() => {
                         // updates image and variables
                         setUploadedImage(processedImageFile);
@@ -148,7 +146,6 @@ const Microwave = () => {
 
                         // sfx & log
                         dingSFX.play();
-                        console.log(processedImageFile);
                     }, waitTime);
 
 				} else {
@@ -165,7 +162,6 @@ const Microwave = () => {
                 setMicrowaving(false);
 			}
 		} else {
-			console.error("No image");
             updateMicrowaveDisplay('No image');
 		}
 	};
@@ -174,7 +170,7 @@ const Microwave = () => {
     return (
         <div className={`microwave-frame ${microwaving ? 'microwaving' : ''}`}>
             <div className="microwave">
-                <Door 
+                <Door>
                     isOpen={isDoorOpen} 
                     onOffToggle={handleDoorOpen}
                     insideElements={
@@ -184,7 +180,7 @@ const Microwave = () => {
                         />
                     }
                     disabled={microwaving}
-                />
+                </Door>
                 <div className="control-panel">
                     <Display
                         text={displayText}

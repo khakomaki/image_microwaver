@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import Image from './Image';
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
 const ImageUpload = ({ onImageUpload, processedImage }) => {
     const [image, setImage] = useState(null);
 
@@ -13,8 +15,16 @@ const ImageUpload = ({ onImageUpload, processedImage }) => {
     // changes currently selected image
     const handleChangeImage = (event) => {
         const selectedImage = event.target.files[0];
-        setImage(selectedImage);
-        onImageUpload(selectedImage);
+
+        // changes image if it doesn't exceed max file size, otherwise clears
+        if (selectedImage.size <= MAX_FILE_SIZE) {
+            setImage(selectedImage);
+            onImageUpload(selectedImage);
+        } else {
+            event.target.value = "";
+            setImage(null);
+            onImageUpload(null);
+        }
     }
 
     const handleDownloadImage = () => {
@@ -34,7 +44,12 @@ const ImageUpload = ({ onImageUpload, processedImage }) => {
     return (
         <div className="image-upload" onClick={(e) => e.stopPropagation()}>
             {image && <Image image={image} />}
-            <input type='file' onChange={handleChangeImage} accept="image/*" id="image-upload-input"/>
+            <input 
+                type='file' 
+                onChange={handleChangeImage} 
+                accept="image/*" 
+                id="image-upload-input"
+            />
             <button onClick={handleDownloadImage} id="image-download-button">Download image</button>
         </div>
     );
