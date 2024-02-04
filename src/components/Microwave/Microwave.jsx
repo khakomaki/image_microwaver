@@ -170,7 +170,7 @@ const Microwave = () => {
     return (
         <div className={`microwave-frame ${microwaving ? 'microwaving' : ''}`}>
             <div className="microwave">
-                <Door>
+                <Door
                     isOpen={isDoorOpen} 
                     onOffToggle={handleDoorOpen}
                     insideElements={
@@ -180,7 +180,7 @@ const Microwave = () => {
                         />
                     }
                     disabled={microwaving}
-                </Door>
+                />
                 <div className="control-panel">
                     <Display
                         text={displayText}

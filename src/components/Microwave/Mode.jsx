@@ -4,7 +4,9 @@ import modeOptions from "./modeOptions";
 const Mode = ({ selectedMode, onModeChange, disabled }) => {
     
     const handleModeChange = (e) => {
-        if (disabled) return;
+        if (disabled) {
+            return;
+        }
         onModeChange(e.target.value);
     };
 
@@ -18,11 +20,11 @@ const Mode = ({ selectedMode, onModeChange, disabled }) => {
                     onChange={handleModeChange}
                     disabled={disabled}
                 >
-                    {modeOptions.map((mode) => (
-                        <option key={mode.name} value={mode.name}>
-                            {mode.name}
-                        </option>
-                    ))}
+                {modeOptions.map((mode) => (
+                    <option key={mode.name} value={mode.name}>
+                        {mode.name}
+                    </option>
+                ))}
                 </select>
             </label>
         </div>

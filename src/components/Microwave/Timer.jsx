@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 const Timer = ({ minValue, maxValue, timerValue, onTimerChange, disabled }) => {
 
     const handleTimerChange = (e) => {
-        if (disabled) return;
+        if (disabled) {
+            return;
+        }
         onTimerChange(parseInt(e.target.value, 10));
     };
 

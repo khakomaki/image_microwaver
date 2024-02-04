@@ -5,7 +5,9 @@ import doorClosedImage from "../../images/microwave_door_closed.png";
 const Door = ({ isOpen, onOffToggle, insideElements, disabled }) => {
 
     const handleToggle = () => {
-        if (disabled) return;
+        if (disabled) {
+            return;
+        }
         onOffToggle();
     };
 
